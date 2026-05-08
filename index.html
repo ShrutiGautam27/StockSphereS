@@ -1,0 +1,536 @@
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>StockSphereS — Master the Market. Zero Financial Risk.</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml;utf8,...">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M15 9.5c0-1.5-1.5-2.5-3-2.5s-3 1-3 2.5 1.5 2 3 2.5c1.5 .5 3 1.5 3 3s-1.5 3-3 3-3-1-3-2.5" stroke="var(--cyan)"></path>
+    </svg>
+    StockSphereS</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#roadmap-generator">AI Roadmap</a></li>
+    <li><a href="#demo">Engine Terminal</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div id="auth-buttons" style="display:flex; gap:12px; align-items:center;">
+      <button class="btn-outline" style="border:none;" onclick="openAuth('login')">Login</button>
+      <button class="btn-primary" onclick="openAuth('signup')">Sign Up</button>
+    </div>
+    <div id="user-menu" style="display:none; gap:12px; align-items:center;">
+      <span id="user-greeting" style="font-size:13px; font-weight:700; color:var(--accent2); letter-spacing:1px; text-transform:uppercase;"></span>
+      <button class="btn-outline" style="border:none; color:var(--red); padding:10px 12px;" onclick="handleLogout()">Logout</button>
+    </div>
+    <button class="btn-outline" style="border-color:var(--accent); color:var(--white);" onclick="toggleChat()">Talk to Mentor</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="badge"><div class="badge-dot"></div>AI-POWERED PLATFORM</div>
+  <h1>Master the Market.<br><span class="accent">Zero Financial Risk.</span></h1>
+  <p>StockSphereS isn't a game. It's a strict, AI-powered investor training protocol that breaks your bad habits before they break your bank account.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">Simulate Trade</button>
+    <button class="btn-outline" onclick="document.getElementById('roadmap-generator').scrollIntoView({behavior:'smooth'})">Get Assessed</button>
+  </div>
+</section>
+<!-- AI ROADMAP GENERATOR -->
+<section id="roadmap-generator">
+  <div class="center">
+    <div class="section-label">Diagnostic Protocol</div>
+    <h2 class="section-title">Bulletproof Your Knowledge</h2>
+    <p class="section-sub">Stop guessing what you need to learn. Our strict AI mentor will interrogate your current understanding and construct a roadmap that exposes and fixes your weak points.</p>
+  </div>
+  
+  <div class="rm-container">
+    <div class="rm-progress">
+      <div class="rm-dot active" id="rm-p1">1</div>
+      <div class="rm-dot" id="rm-p2">2</div>
+      <div class="rm-dot" id="rm-p3">3</div>
+    </div>
+    
+    <!-- Step 1: Self Assessment -->
+    <div id="rm-step-1" class="rm-step active">
+      <div class="rm-header">
+        <h3>Assess Your Level</h3>
+        <p>Don't lie to yourself. The market doesn't care about your ego.</p>
+      </div>
+      <div class="rm-options">
+        <button class="rm-btn" onclick="genRoadmap('noob')"><div class="rm-btn-icon">🌱</div> Level 0: "I know absolutely nothing. Market is magic to me."</button>
+        <button class="rm-btn" onclick="genRoadmap('loser')"><div class="rm-btn-icon">📉</div> Level 1: "I know the basics, but I keep losing money and panicking."</button>
+        <button class="rm-btn" onclick="goToRmTest()"><div class="rm-btn-icon">🧠</div> Level 2: "I know what I'm doing. Test me."</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Interrogation -->
+    <div id="rm-step-2" class="rm-step">
+      <div class="rm-header">
+        <h3>Prove It.</h3>
+        <p>You claim you know what you're doing. Let's see if your knowledge is half-baked.</p>
+      </div>
+      <div class="rm-question-box">
+        <span class="rm-question-label">Interrogation Subject: Liquidity Risk</span>
+        <div class="rm-question">What is the exact danger of using Market Orders on a low-liquidity stock, and how does slippage affect your R:R (Risk/Reward) ratio?</div>
+      </div>
+      <textarea id="rm-answer" class="rm-textarea" placeholder="Type your answer here. Be precise. No fluff..."></textarea>
+      <button class="btn-primary" style="width:100%; padding: 18px; font-size: 16px;" onclick="evaluateRmAnswer()"> Submit for AI Audit</button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="rm-analyzing" class="rm-analyzing">
+      <div class="loader-core"></div>
+      <p>MENTOR AI ANALYZING RESPONSE...</p>
+    </div>
+
+    <!-- Step 3: Resulting Roadmap -->
+    <div id="rm-step-3" class="rm-step">
+      <div class="rm-header">
+        <h3>Your Custom Syllabus</h3>
+        <p>Based on your diagnostic, here is your required path.</p>
+      </div>
+      <div class="rm-feedback-box">
+        <strong>Mentor Diagnosis</strong>
+        <span id="rm-feedback-msg" style="color:var(--text); font-size: 15px;"></span>
+      </div>
+      <div id="rm-dynamic-path" class="rm-path">
+        <!-- Injected via JS -->
+      </div>
+      <button class="btn-outline" style="width:100%; margin-top:36px; padding: 16px;" onclick="resetRoadmap()">↺ Restart Diagnostic</button>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div id="stats" class="reveal">
+  <div class="stats-grid">
+    <div class="stat-item"><div class="stat-num">12<span>K+</span></div><div class="stat-label">Active Traders</div></div>
+    <div class="stat-item"><div class="stat-num">₹33<span>Cr+</span></div><div class="stat-label">Virtual Trades Executed</div></div>
+    <div class="stat-item"><div class="stat-num">94<span>%</span></div><div class="stat-label">Improved Discipline Score</div></div>
+    <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">AI-Powered Features</div></div>
+  </div>
+</div>
+
+<!-- 3-STEP MODEL -->
+<section id="steps">
+  <div class="center">
+    <div class="section-label">The Pipeline</div>
+    <h2 class="section-title">The 3-Step Investor Transformation</h2>
+    <p class="section-sub">Our structured pipeline ensures you build a foundation before you risk fake capital, and master your psychology before you risk real capital.</p>
+  </div>
+  <div class="steps-grid reveal">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Learn</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:16px;">Understand how markets work before executing a single trade. Structured modules include:</p>
+      <ul><li>Market Fundamentals</li><li>Technical Analysis</li><li>Portfolio & Risk Management</li><li>Behavioral Finance</li></ul>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>Simulate</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:16px;">Practice using our Virtual Trading Engine. Gain real experience without financial risk.</p>
+      <ul><li>Buy/Sell with Virtual Cash</li><li>Track Portfolio Value</li><li>View Trade History</li><li>Monitor P/L in Real-Time</li></ul>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Master</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:16px;">Develop discipline and improve your strategy to become a confident, skilled investor.</p>
+      <ul><li>Advanced Analytics Tools</li><li>AI Behavioral Feedback</li><li>Strategy Comparison</li><li>Discipline Scoring</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO TRADING ENGINE (DYNAMIC PNL) -->
+<section id="demo">
+  <div class="center">
+    <div class="badge" style="margin:0 auto 12px;"><div class="badge-dot"></div>FIXED ENGINE V2.0</div>
+    <h2 class="section-title">Execution Terminal</h2>
+    <p class="section-sub">Experience the dynamic engine. Execute trades below. The AI will strictly monitor your Average Cost Basis, PnL, and emotional discipline.</p>
+  </div>
+  <div class="demo-inner reveal">
+    <div class="demo-bar">
+      <div class="demo-bar-left">
+        <div class="demo-dot" style="background:#ff5f57"></div>
+        <div class="demo-dot" style="background:#febc2e"></div>
+        <div class="demo-dot" style="background:#28c840"></div>
+        <span style="margin-left:8px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;">SYS. TERMINAL</span>
+      </div>
+      <button class="demo-reset" onclick="resetDemo()">↺ Reset Engine</button>
+    </div>
+    <div class="demo-cols">
+      
+      <!-- Markets -->
+      <div class="demo-col">
+        <div class="demo-col-title">📉 Live Markets</div>
+        <div class="ticker-row"><span class="ticker-name">AAPL</span><span class="price-down" id="aapl-price">₹14,218.00</span></div>
+        <div class="ticker-row"><span class="ticker-name">TSLA</span><span class="price-up" id="tsla-price">₹15,577.00</span></div>
+        <div class="ticker-row"><span class="ticker-name">NVDA</span><span class="price-down" id="nvda-price">₹76,474.00</span></div>
+        <div class="ticker-row"><span class="ticker-name">GME</span><span class="price-up" id="gme-price">₹1,108.00</span></div>
+      </div>
+      
+      <!-- Terminal -->
+      <div class="demo-col">
+        <div class="demo-col-title">Execution Terminal</div>
+        <div class="exec-symbol">AAPL</div>
+        <div class="exec-price" id="exec-price">₹14,218.00</div>
+        
+        <div class="exec-data-box">
+            <div class="exec-meta"><span>Buying Power:</span> <strong id="buying-power" style="color:var(--white)">₹833,000.00</strong></div>
+            <div class="exec-meta"><span>Shares Owned:</span> <strong id="shares-owned" style="color:var(--white)">0</strong></div>
+            <div class="exec-meta" style="margin-bottom:0;"><span>Avg Cost Basis:</span> <strong id="avg-cost" style="color:var(--cyan)">₹0.00</strong></div>
+        </div>
+
+        <div class="exec-btns">
+          <button class="btn-buy" onclick="executeTrade('buy')">▲ BUY 1</button>
+          <button class="btn-sell" onclick="executeTrade('sell')">▼ SELL 1</button>
+        </div>
+      </div>
+      
+      <!-- Logs & PnL -->
+      <div class="demo-col">
+        <div class="demo-col-title">🤖 AI Audit Log</div>
+        <div id="ai-log">
+          <div class="ai-msg"><span class="ai-avatar">🤖</span> Engine initialized. Stop guessing. Execute based on data.</div>
+        </div>
+        <div class="exec-meta" style="margin-top:16px">Total Portfolio Value</div>
+        <div class="portfolio-val" id="portfolio-val">₹833,000.00</div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="center">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-title">Platform Features</h2>
+    <p class="section-sub">Everything you need to go from an absolute beginner to a disciplined market strategist. <strong style="color:var(--accent2)">Click any feature</strong> to explore it.</p>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feat-card feat-clickable" onclick="openFeature(0)"><div class="feat-click-hint">Tap to explore →</div><div class="feat-icon">📈</div><h3>1. Virtual Trading Engine</h3><p>The core simulation tool. Enter stock symbols, set quantities, simulate buying/selling, and monitor your portfolio value with accurate cost basis.</p></div>
+    <div class="feat-card feat-clickable" onclick="openFeature(1)"><div class="feat-click-hint">Tap to explore →</div><div class="feat-icon">⚗️</div><h3>2. Strategy Battle Lab</h3><p>Compare different trading strategies side-by-side. Evaluate ROI, volatility levels, and drawdown risks.</p></div>
+    <div class="feat-card feat-clickable" onclick="openFeature(2)"><div class="feat-click-hint">Tap to explore →</div><div class="feat-icon">🎯</div><h3>3. Market Crash Simulator</h3><p>Stress-test your psychology. Simulate extreme scenarios like financial crises or sudden downturns.</p></div>
+    <div class="feat-card feat-clickable" onclick="openFeature(3)"><div class="feat-click-hint">Tap to explore →</div><div class="feat-icon">📊</div><h3>4. Portfolio Intelligence</h3><p>Advanced analytics featuring portfolio growth visualization, asset allocation breakdowns, and risk vs. return comparisons.</p></div>
+    <div class="feat-card feat-clickable" onclick="openFeature(4)"><div class="feat-click-hint">Tap to explore →</div><div class="feat-icon">🌐</div><h3>5. Market Intelligence</h3><p>Stay informed with macro insights. View market index trends, sector performance, and social sentiment indicators.</p></div>
+    <div class="feat-card feat-clickable highlight" onclick="openFeature(5)"><div class="core-badge">Core Feature</div><div class="feat-click-hint">Tap to explore →</div><div class="feat-icon">🧠</div><h3>6. Strict AI Auditing</h3><p>The AI watches your emotions, not just your profits. It calls out FOMO buying, panic selling, and undisciplined execution.</p></div>
+    <div class="feat-card feat-clickable" onclick="openFeature(6)"><div class="feat-click-hint">Tap to explore →</div><div class="feat-icon">⚖️</div><h3>7. Discipline Score</h3><p>A quantitative measure of your psychology. We track if you follow your trading plan and control emotions during volatility.</p></div>
+    <div class="feat-card feat-clickable" onclick="openFeature(7)"><div class="feat-click-hint">Tap to explore →</div><div class="feat-icon">🛣️</div><h3>8. Diagnostic Roadmaps</h3><p>Generates actionable learning paths based on interrogating your actual knowledge level. No generic tutorials.</p></div>
+    <div class="feat-card feat-clickable" onclick="openFeature(8)"><div class="feat-click-hint">Tap to explore →</div><div class="feat-icon">🎓</div><h3>9. Learning Hub</h3><p>A comprehensive educational portal offering beginner lessons, interactive quizzes, progress tracking, and certification paths.</p></div>
+  </div>
+</section>
+
+<!-- FEATURE DETAIL MODAL (Reused) -->
+<div class="feat-modal-overlay" id="featModalOverlay" onclick="if(event.target===this)closeFeatModal()">
+  <div class="feat-modal" id="featModal">
+    <button class="feat-modal-close" onclick="closeFeatModal()">✕</button>
+    <div class="feat-modal-header">
+      <div class="feat-modal-icon" id="fmIcon"></div>
+      <div>
+        <div class="feat-modal-badge" id="fmBadge"></div>
+        <h3 id="fmTitle"></h3>
+        <p id="fmTagline"></p>
+      </div>
+    </div>
+    <div class="feat-modal-body">
+      <div class="feat-modal-desc" id="fmDesc"></div>
+      <div class="feat-modal-cols">
+        <div class="feat-modal-col">
+          <div class="feat-modal-col-title">✅ What You Can Do</div>
+          <ul id="fmCapabilities"></ul>
+        </div>
+        <div class="feat-modal-col">
+          <div class="feat-modal-col-title">💡 How It Helps You</div>
+          <ul id="fmBenefits"></ul>
+        </div>
+      </div>
+      <div class="feat-modal-demo" id="fmDemo"></div>
+      <div class="feat-modal-plans">
+        <span class="feat-modal-plan-label">Available on:</span>
+        <span id="fmPlans"></span>
+      </div>
+    </div>
+    <div class="feat-modal-footer">
+      <button class="feat-modal-cta" onclick="closeFeatModal(); document.getElementById('demo').scrollIntoView({behavior:'smooth'})">Try This Feature Free →</button>
+      <div class="feat-nav">
+        <button class="feat-nav-btn" onclick="navigateFeature(-1)">← Prev</button>
+        <span id="fmCounter" style="font-size:13px;color:var(--muted)"></span>
+        <button class="feat-nav-btn" onclick="navigateFeature(1)">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY + WHO -->
+<section id="why">
+  <div class="why-grid">
+    <div>
+      <div class="section-label">Our Edge</div>
+      <h2 class="section-title">Why StockSphereS?</h2>
+      <p class="section-sub">Most trading platforms only provide charts and generic tools. StockSphereS is entirely focused on developing disciplined investors.</p>
+      <div class="why-points reveal">
+        <div class="why-point"><div class="why-icon">📚</div><div><h4>Financial Education First</h4><p>We don't just throw you in the deep end. You learn the theory before the practice.</p></div></div>
+        <div class="why-point"><div class="why-icon">🧠</div><div><h4>Behavioral Psychology</h4><p>We analyze your decisions, not just your profit and loss, to fix bad habits.</p></div></div>
+        <div class="why-point"><div class="why-icon">🛡️</div><div><h4>Zero Real-Money Risk</h4><p>All trades are simulated. You can't lose real money while you're learning.</p></div></div>
+        <div class="why-point"><div class="why-icon">🤖</div><div><h4>AI-Personalized Coaching</h4><p>Every user gets personalized feedback and custom improvement plans from the AI engine.</p></div></div>
+      </div>
+    </div>
+    <div class="who-card reveal">
+      <h3>Who is this for?</h3>
+      <div class="who-item">🌱 Beginner Investors</div>
+      <div class="who-item">🎓 Students Learning Finance</div>
+      <div class="who-item">📈 Aspiring Day Traders</div>
+      <div class="who-item">🛡️ Risk-Averse Individuals</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="center">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Pricing Plans</h2>
+    <p class="section-sub">Start for free, upgrade when you are ready to master the market.</p>
+  </div>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="price-name">Starter Plan</div>
+      <div class="price-amount">₹0</div>
+      <div class="price-period">/mo — forever free</div>
+      <ul class="price-features">
+        <li>Basic Virtual Trading</li>
+        <li>Standard Market Data</li>
+        <li>Beginner Diagnostic Roadmap</li>
+        <li>Limited AI Mentor Messages</li>
+      </ul>
+      <button class="btn-plan btn-plan-outline" onclick="document.getElementById('demo').scrollIntoView()">Get Started Free</button>
+    </div>
+    <div class="price-card popular">
+      <div class="popular-badge">Most Popular</div>
+      <div class="price-name">Professional Plan</div>
+      <div class="price-amount"><sup>₹</sup>1,499</div>
+      <div class="price-period">/mo — billed monthly</div>
+      <ul class="price-features">
+        <li>Strict AI Behavioral Engine</li>
+        <li>Discipline Score System</li>
+        <li>Strategy Battle Lab</li>
+        <li>Unlimited Interrogation Roadmaps</li>
+        <li>Market Crash Simulator</li>
+        <li>Unlimited Mentor Chatbot</li>
+      </ul>
+      <button class="btn-plan btn-plan-filled" onclick="document.getElementById('demo').scrollIntoView()">Start Professional</button>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Enterprise Plan</div>
+      <div class="price-amount">Custom</div>
+      <div class="price-period">contact us for pricing</div>
+      <ul class="price-features">
+        <li>Dedicated AI Mentor Instances</li>
+        <li>Bulk Student Accounts</li>
+        <li>Custom Crash Scenarios</li>
+        <li>API Access</li>
+        <li>Priority Support</li>
+      </ul>
+      <button class="btn-plan btn-plan-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Sales</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="center">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+  </div>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is my money actually at risk on StockSphereS?<span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">No. All trading on StockSphereS is done with virtual money in a simulated environment. You cannot lose real money. The platform is designed purely for education and skill development before you ever touch a real brokerage account.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How strict is the AI Mentor?<span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Very. The AI is designed to not sugarcoat your mistakes. If you make a foolish trade out of FOMO, it will call it trash. The goal is to break bad emotional habits and force you into a disciplined, data-driven mindset.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the Discipline Score?<span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">The Discipline Score is a quantitative rating (0–100) of how well you stick to your trading plan. It measures things like whether you cut losses at your predefined stop-loss, avoid emotional trades during volatility, and execute strategies consistently over time.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div id="newsletter" class="reveal">
+  <div class="section-label" style="text-align:center;margin-bottom:12px;">Stay in the Loop</div>
+  <h2>Get Market Insights & Platform Updates</h2>
+  <p>Join 5,000+ traders getting our weekly behavioral finance tips, feature releases, and market psychology breakdowns.</p>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="your@email.com" id="nl-email"/>
+    <button class="btn-primary" onclick="subscribeNewsletter()">Subscribe →</button>
+  </div>
+  <p id="nl-success" style="color:var(--green);font-size:14px;margin-top:12px;display:none;">✓ You're in! Welcome to the community.</p>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="center">
+      <div class="section-label">Support</div>
+      <h2 class="section-title">Contact & Support</h2>
+      <p class="section-sub">Have questions about our educational tools or pricing tiers? Reach out to our team.</p>
+    </div>
+    <div class="form-grid reveal">
+      <div class="form-group"><label>First Name</label><input class="form-input" placeholder="John"/></div>
+      <div class="form-group"><label>Last Name</label><input class="form-input" placeholder="Doe"/></div>
+      <div class="form-group full"><label>Email Address</label><input class="form-input" placeholder="john@example.com"/></div>
+      <div class="form-group full">
+        <label>Subject</label>
+        <select class="form-select form-input">
+          <option>General Inquiry / FAQ</option>
+          <option>Billing & Subscription</option>
+          <option>Enterprise / Schools</option>
+          <option>Bug Report</option>
+        </select>
+      </div>
+      <div class="form-group full"><label>Message</label><textarea class="form-textarea" placeholder="How can we help you?"></textarea></div>
+      <div class="form-group full"><button class="form-submit">Send Message ✉</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M15 9.5c0-1.5-1.5-2.5-3-2.5s-3 1-3 2.5 1.5 2 3 2.5c1.5 .5 3 1.5 3 3s-1.5 3-3 3-3-1-3-2.5" stroke="var(--cyan)"></path>
+        </svg>
+        StockSphereS</span>
+      </div>
+      <p>An AI-powered investor training platform focused on developing disciplined, psychologically aware traders — with zero financial risk.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#" title="Twitter">𝕏</a>
+        <a class="social-btn" href="#" title="GitHub">⌥</a>
+        <a class="social-btn" href="#" title="LinkedIn">in</a>
+        <a class="social-btn" href="#" title="Discord">◈</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#demo">Live Demo</a></li>
+        <li><a href="#comparison">vs. Competitors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="#">Learning Hub</a></li>
+        <li><a href="#">Market Basics</a></li>
+        <li><a href="#">Behavioral Finance</a></li>
+        <li><a href="#">Strategy Guides</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 StockSphereS. For educational purposes only.</p>
+    <p class="footer-disclaimer">StockSphereS is a simulated trading platform for educational use only. It does not provide financial advice. Past simulated performance is not indicative of future real-market results.</p>
+  </div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="auth-overlay" id="authModalOverlay" onclick="if(event.target===this)closeAuth()">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuth()">✕</button>
+    <div class="auth-header">
+      <div class="nav-logo" style="justify-content:center; margin-bottom:16px; font-size:22px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M15 9.5c0-1.5-1.5-2.5-3-2.5s-3 1-3 2.5 1.5 2 3 2.5c1.5 .5 3 1.5 3 3s-1.5 3-3 3-3-1-3-2.5" stroke="var(--cyan)"></path>
+        </svg>
+        StockSphere<span>S</span>
+      </div>
+      <h3 id="auth-title">Access Terminal</h3>
+      <p id="auth-subtitle">Stop lurking. Face the market.</p>
+    </div>
+    
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="tab-login" onclick="switchAuth('login')">Login</div>
+      <div class="auth-tab" id="tab-signup" onclick="switchAuth('signup')">Sign Up</div>
+    </div>
+
+    <!-- Login Form -->
+    <form class="auth-form active" id="form-login" onsubmit="event.preventDefault(); handleAuthSubmit('login');">
+      <input type="email" class="auth-input" placeholder="Email Address" required />
+      <input type="password" class="auth-input" placeholder="Password" required />
+      <button type="submit" class="auth-submit">Initialize Session →</button>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form class="auth-form" id="form-signup" onsubmit="event.preventDefault(); handleAuthSubmit('signup');">
+      <input type="text" class="auth-input" placeholder="Full Name" required />
+      <input type="email" class="auth-input" placeholder="Email Address" required />
+      <input type="password" class="auth-input" placeholder="Create Password" required />
+      <select class="auth-input" required style="appearance:none; color:var(--muted);" onchange="this.style.color='var(--white)'">
+        <option value="" disabled selected>Select Experience Level</option>
+        <option value="noob">Level 0: Total Beginner</option>
+        <option value="loser">Level 1: Emotional / Losing Money</option>
+        <option value="pro">Level 2: Prove It</option>
+      </select>
+      <button type="submit" class="auth-submit">Create Protocol →</button>
+    </form>
+  </div>
+</div>
+
+<!-- STRICT AI MENTOR CHATBOT -->
+<div id="chatbot-wrapper">
+  <button class="chat-btn" onclick="toggleChat()">🤖</button>
+  <div class="chat-window" id="chat-window">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-header-avatar">🤖</div>
+        <div>
+          <h4>Mentor.AI</h4>
+          <p>CALM • DISCIPLINED • STRATEGIC</p>
+        </div>
+      </div>
+      <button class="close-chat" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-body" id="chat-body">
+      <div class="chat-bubble chat-ai">I am your mentor. I don't sugarcoat anything. Tell me what strategy you are failing at today. And don't give me a half-baked answer.</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" class="chat-input" placeholder="Explain your weak point..." onkeypress="if(event.key === 'Enter') handleChat()"/>
+      <button class="chat-send" onclick="handleChat()"> Send</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
