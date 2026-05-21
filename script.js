@@ -3,7 +3,7 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: 0.1 });
 revealEls.forEach(el => io.observe(el));
-/* ── TRADING ENGINE LOGIC (DYNAMIC PNL & AVG COST) ── */
+
 const basePrices = { aapl: 14218, tsla: 15577, nvda: 76474, gme: 1108 };
 let currentPrices = {...basePrices};
 let shares = 0;
@@ -100,8 +100,8 @@ setInterval(updatePrices, 2000);
 updatePortfolio();
 
 
-/* ── GEMINI API INTEGRATION ── */
-const apiKey = "AIzaSyAjVqu3ciWxX5o9MpZHJUJlzUg9BD-UV9Q"; // Provided by execution environment
+
+const apiKey = "AIzaSyAjVqu3ciWxX5o9MpZHJUJlzUg9BD-UV9Q"; 
 const geminiModel = "gemini-3-flash-preview";
 
 async function fetchWithBackoff(url, payload, retries = 5) {
@@ -147,7 +147,6 @@ async function callGemini(prompt, isJson = false) {
 }
 
 
-/* ── AI ROADMAP GENERATOR LOGIC (IMPROVED UI) ── */
 function updateRmProgress(step) {
   document.getElementById('rm-p1').className = 'rm-dot ' + (step >= 1 ? (step > 1 ? 'completed' : 'active') : '');
   document.getElementById('rm-p2').className = 'rm-dot ' + (step >= 2 ? (step > 2 ? 'completed' : 'active') : '');
@@ -163,7 +162,7 @@ function goToRmTest() {
 async function evaluateRmAnswer() {
     const answer = document.getElementById('rm-answer').value.trim();
     
-    // Switch to loading state
+    
     document.getElementById('rm-step-2').classList.remove('active');
     document.getElementById('rm-analyzing').classList.add('active');
     
@@ -187,7 +186,6 @@ async function evaluateRmAnswer() {
         return; // Exit if successful
     }
     
-    // Fallback to hardcoded logic if API fails
     setTimeout(() => {
       document.getElementById('rm-analyzing').classList.remove('active');
       if(answer.length < 30) {
@@ -285,7 +283,6 @@ function resetRoadmap() {
     updateRmProgress(1);
 }
 
-/* ── STRICT MENTOR CHATBOT LOGIC ── */
 function toggleChat() {
     const win = document.getElementById('chat-window');
     win.classList.toggle('open');
@@ -324,7 +321,7 @@ Keep the response concise and under 3 sentences.`;
         return;
     }
     
-    // Fallback
+  
     setTimeout(() => {
         document.getElementById(thinkingId)?.remove();
         const response = getStrictMentorResponse(text.toLowerCase());
@@ -337,7 +334,7 @@ function appendChat(msg, sender, id = null) {
     const div = document.createElement('div');
     div.className = `chat-bubble chat-${sender}`;
     if (id) div.id = id;
-    div.innerHTML = msg; // Using innerHTML to support the loading span
+    div.innerHTML = msg;
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
 }
@@ -358,7 +355,6 @@ function getStrictMentorResponse(input) {
     return "You're focusing on the wrong thing. Step back and analyze the actual data and decision-making process. What specifically caused the outcome?";
 }
 
-/* ── AUTH MODAL LOGIC ── */
 function openAuth(type) {
   document.getElementById('authModalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -397,7 +393,7 @@ function handleAuthSubmit(type) {
   btn.textContent = 'Authenticating...';
   btn.style.opacity = '0.7';
   
-  // Mock API Call
+  
   setTimeout(() => {
     btn.textContent = 'Access Granted.';
     btn.style.background = 'var(--green)';
@@ -423,8 +419,16 @@ function handleLogout() {
   document.getElementById('user-menu').style.display = 'none';
   addLog('Session terminated. You logged out. Running away from the market?', 'warn');
 }
+document.querySelectorAll('.auth-input').forEach(input=>{
+  input.addEventListener('focus',()=>{
+    input.parentElement.style.transform='translateY(-2px)';
+  });
 
-/* FAQ & NEWSLETTER */
+  input.addEventListener('blur',()=>{
+    input.parentElement.style.transform='translateY(0px)';
+  });
+});
+
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
@@ -438,7 +442,7 @@ function subscribeNewsletter() {
   document.getElementById('nl-email').value = '';
 }
 
-/* ── 9-GRID FEATURE MODAL DATA ── */
+
 const features = [
   {
     icon: '📈', title: 'Virtual Trading Engine', badge: 'Core Module', badgeColor: 'plan-free',
