@@ -3,12 +3,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>StockSphereS — Master the Market. Zero Financial Risk.</title>
 <link rel="stylesheet" href="style.css">
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
 <link rel="icon" href="data:image/svg+xml;utf8,...">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -37,7 +40,7 @@
   </div>
 </nav>
 
-<!-- HERO -->
+
 <section id="hero">
   <div class="badge"><div class="badge-dot"></div>AI-POWERED PLATFORM</div>
   <h1>Master the Market.<br><span class="accent">Zero Financial Risk.</span></h1>
@@ -47,7 +50,7 @@
     <button class="btn-outline" onclick="document.getElementById('roadmap-generator').scrollIntoView({behavior:'smooth'})">Get Assessed</button>
   </div>
 </section>
-<!-- AI ROADMAP GENERATOR -->
+
 <section id="roadmap-generator">
   <div class="center">
     <div class="section-label">Diagnostic Protocol</div>
@@ -62,7 +65,7 @@
       <div class="rm-dot" id="rm-p3">3</div>
     </div>
     
-    <!-- Step 1: Self Assessment -->
+    
     <div id="rm-step-1" class="rm-step active">
       <div class="rm-header">
         <h3>Assess Your Level</h3>
@@ -75,7 +78,7 @@
       </div>
     </div>
 
-    <!-- Step 2: Interrogation -->
+    
     <div id="rm-step-2" class="rm-step">
       <div class="rm-header">
         <h3>Prove It.</h3>
@@ -89,13 +92,13 @@
       <button class="btn-primary" style="width:100%; padding: 18px; font-size: 16px;" onclick="evaluateRmAnswer()"> Submit for AI Audit</button>
     </div>
 
-    <!-- Loading State -->
+    
     <div id="rm-analyzing" class="rm-analyzing">
       <div class="loader-core"></div>
       <p>MENTOR AI ANALYZING RESPONSE...</p>
     </div>
 
-    <!-- Step 3: Resulting Roadmap -->
+    
     <div id="rm-step-3" class="rm-step">
       <div class="rm-header">
         <h3>Your Custom Syllabus</h3>
@@ -106,14 +109,14 @@
         <span id="rm-feedback-msg" style="color:var(--text); font-size: 15px;"></span>
       </div>
       <div id="rm-dynamic-path" class="rm-path">
-        <!-- Injected via JS -->
+        
       </div>
       <button class="btn-outline" style="width:100%; margin-top:36px; padding: 16px;" onclick="resetRoadmap()">↺ Restart Diagnostic</button>
     </div>
   </div>
 </section>
 
-<!-- STATS BAR -->
+
 <div id="stats" class="reveal">
   <div class="stats-grid">
     <div class="stat-item"><div class="stat-num">12<span>K+</span></div><div class="stat-label">Active Traders</div></div>
@@ -123,7 +126,7 @@
   </div>
 </div>
 
-<!-- 3-STEP MODEL -->
+
 <section id="steps">
   <div class="center">
     <div class="section-label">The Pipeline</div>
@@ -152,7 +155,7 @@
   </div>
 </section>
 
-<!-- DEMO TRADING ENGINE (DYNAMIC PNL) -->
+
 <section id="demo">
   <div class="center">
     <div class="badge" style="margin:0 auto 12px;"><div class="badge-dot"></div>FIXED ENGINE V2.0</div>
@@ -171,7 +174,7 @@
     </div>
     <div class="demo-cols">
       
-      <!-- Markets -->
+      
       <div class="demo-col">
         <div class="demo-col-title">📉 Live Markets</div>
         <div class="ticker-row"><span class="ticker-name">AAPL</span><span class="price-down" id="aapl-price">₹14,218.00</span></div>
@@ -180,7 +183,7 @@
         <div class="ticker-row"><span class="ticker-name">GME</span><span class="price-up" id="gme-price">₹1,108.00</span></div>
       </div>
       
-      <!-- Terminal -->
+      
       <div class="demo-col">
         <div class="demo-col-title">Execution Terminal</div>
         <div class="exec-symbol">AAPL</div>
@@ -198,7 +201,7 @@
         </div>
       </div>
       
-      <!-- Logs & PnL -->
+     
       <div class="demo-col">
         <div class="demo-col-title">🤖 AI Audit Log</div>
         <div id="ai-log">
@@ -212,7 +215,7 @@
   </div>
 </section>
 
-<!-- FEATURES -->
+
 <section id="features">
   <div class="center">
     <div class="section-label">Capabilities</div>
@@ -232,7 +235,7 @@
   </div>
 </section>
 
-<!-- FEATURE DETAIL MODAL (Reused) -->
+
 <div class="feat-modal-overlay" id="featModalOverlay" onclick="if(event.target===this)closeFeatModal()">
   <div class="feat-modal" id="featModal">
     <button class="feat-modal-close" onclick="closeFeatModal()">✕</button>
@@ -273,7 +276,6 @@
   </div>
 </div>
 
-<!-- WHY + WHO -->
 <section id="why">
   <div class="why-grid">
     <div>
@@ -297,9 +299,6 @@
   </div>
 </section>
 
-
-
-<!-- PRICING -->
 <section id="pricing">
   <div class="center">
     <div class="section-label">Pricing</div>
@@ -350,7 +349,7 @@
   </div>
 </section>
 
-<!-- FAQ -->
+
 <section id="faq">
   <div class="center">
     <div class="section-label">FAQ</div>
@@ -372,7 +371,7 @@
   </div>
 </section>
 
-<!-- NEWSLETTER -->
+
 <div id="newsletter" class="reveal">
   <div class="section-label" style="text-align:center;margin-bottom:12px;">Stay in the Loop</div>
   <h2>Get Market Insights & Platform Updates</h2>
@@ -384,7 +383,7 @@
   <p id="nl-success" style="color:var(--green);font-size:14px;margin-top:12px;display:none;">✓ You're in! Welcome to the community.</p>
 </div>
 
-<!-- CONTACT -->
+
 <section id="contact">
   <div class="contact-inner">
     <div class="center">
@@ -411,7 +410,7 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
@@ -464,51 +463,111 @@
   </div>
 </footer>
 
-<!-- AUTH MODAL -->
+
 <div class="auth-overlay" id="authModalOverlay" onclick="if(event.target===this)closeAuth()">
   <div class="auth-modal">
-    <button class="auth-close" onclick="closeAuth()">✕</button>
+    <button class="auth-close" onclick="closeAuth()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
     <div class="auth-header">
-      <div class="nav-logo" style="justify-content:center; margin-bottom:16px; font-size:22px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <div class="auth-logo">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="28"
+             height="28"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="var(--accent)"
+             stroke-width="2.5"
+             stroke-linecap="round"
+             stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>
-          <path d="M15 9.5c0-1.5-1.5-2.5-3-2.5s-3 1-3 2.5 1.5 2 3 2.5c1.5 .5 3 1.5 3 3s-1.5 3-3 3-3-1-3-2.5" stroke="var(--cyan)"></path>
+          <path d="M15 9.5c0-1.5-1.5-2.5-3-2.5s-3 1-3 2.5 1.5 2 3 2.5c1.5 .5 3 1.5 3 3s-1.5 3-3 3-3-1-3-2.5"></path>
         </svg>
-        StockSphere<span>S</span>
+        <span>StockSphereS<span class="logo-s"></span></span>
       </div>
       <h3 id="auth-title">Access Terminal</h3>
       <p id="auth-subtitle">Stop lurking. Face the market.</p>
     </div>
-    
     <div class="auth-tabs">
-      <div class="auth-tab active" id="tab-login" onclick="switchAuth('login')">Login</div>
-      <div class="auth-tab" id="tab-signup" onclick="switchAuth('signup')">Sign Up</div>
+      <div class="auth-tab active"
+           id="tab-login"
+           onclick="switchAuth('login')">
+        Login
+      </div>
+      <div class="auth-tab"
+           id="tab-signup"
+           onclick="switchAuth('signup')">
+        Sign Up
+      </div>
     </div>
-
-    <!-- Login Form -->
-    <form class="auth-form active" id="form-login" onsubmit="event.preventDefault(); handleAuthSubmit('login');">
-      <input type="email" class="auth-input" placeholder="Email Address" required />
-      <input type="password" class="auth-input" placeholder="Password" required />
-      <button type="submit" class="auth-submit">Initialize Session →</button>
+    <form class="auth-form active"
+          id="form-login"
+          onsubmit="event.preventDefault(); handleAuthSubmit('login');">
+      <div class="auth-input-box">
+        <i class="fa-regular fa-envelope"></i>
+        <input type="email"
+               class="auth-input"
+               placeholder="Email Address"
+               required />
+      </div>
+      <div class="auth-input-box">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password"
+               class="auth-input"
+               placeholder="Password"
+               required />
+      </div>
+      <div class="remember-row">
+        <label>
+          <input type="checkbox">
+          Remember me
+        </label>
+        <a href="#">Forgot Password?</a>
+      </div>
+      <button type="submit"
+              class="auth-submit">
+        Login to Dashboard
+      </button>
+      <div class="signup-switch">
+        New to StockSphereS?
+        <span onclick="switchAuth('signup')">
+          Sign up now
+        </span>
+      </div>
     </form>
-
-    <!-- Sign Up Form -->
-    <form class="auth-form" id="form-signup" onsubmit="event.preventDefault(); handleAuthSubmit('signup');">
-      <input type="text" class="auth-input" placeholder="Full Name" required />
-      <input type="email" class="auth-input" placeholder="Email Address" required />
-      <input type="password" class="auth-input" placeholder="Create Password" required />
-      <select class="auth-input" required style="appearance:none; color:var(--muted);" onchange="this.style.color='var(--white)'">
-        <option value="" disabled selected>Select Experience Level</option>
-        <option value="noob">Level 0: Total Beginner</option>
-        <option value="loser">Level 1: Emotional / Losing Money</option>
-        <option value="pro">Level 2: Prove It</option>
-      </select>
-      <button type="submit" class="auth-submit">Create Protocol →</button>
+    <form class="auth-form"
+          id="form-signup"
+          onsubmit="event.preventDefault(); handleAuthSubmit('signup');">
+      <div class="auth-input-box">
+        <i class="fa-regular fa-user"></i>
+        <input type="text"
+               class="auth-input"
+               placeholder="Full Name"
+               required />
+      </div>
+      <div class="auth-input-box">
+        <i class="fa-regular fa-envelope"></i>
+        <input type="email"
+               class="auth-input"
+               placeholder="Email Address"
+               required />
+      </div>
+      <div class="auth-input-box">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password"
+               class="auth-input"
+               placeholder="Create Password"
+               required />
+      </div>
+      <button type="submit"
+              class="auth-submit">
+        Create Account
+      </button>
     </form>
   </div>
 </div>
 
-<!-- STRICT AI MENTOR CHATBOT -->
+
 <div id="chatbot-wrapper">
   <button class="chat-btn" onclick="toggleChat()">🤖</button>
   <div class="chat-window" id="chat-window">
